@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/dom'
+import { screen } from '@testing-library/react'
 import React from 'react'
 import { mockData } from '../../mocks/handlers'
 import { renderWithQueryClientAndRouter } from '../../test/utils'
@@ -10,7 +10,7 @@ describe('Test Home', () => {
     expect(screen.getByText('Cargando...'))
     expect(
       await screen.findByRole('heading', {
-        name: `${mockData.length} posts publicados`
+        name: `${mockData.results.length} characters publicados`
       })
     ).toBeInTheDocument()
   })

@@ -4,19 +4,12 @@ import './index.css'
 import App from './App'
 import { ChakraProvider } from '@chakra-ui/react'
 
-console.log('Env: ', process.env.NODE_ENV)
 // MSW
-if (process.env.NODE_ENV === 'development') {
-  const modules = import.meta.glob('./mocks/browser.ts')
-  for (const path in modules) {
-    modules[path]().then((mod) => {
-      if ('worker' in mod) {
-        const { worker } = mod
-        worker.start()
-      }
-    })
-  }
-}
+// if (import.meta.env.MODE === 'development') {
+//   const modules = import.meta.globEager('./mocks/browser.ts')
+//   const { worker } = modules['./mocks/browser.ts']
+//   worker.start()
+// }
 
 ReactDOM.render(
   <ChakraProvider>

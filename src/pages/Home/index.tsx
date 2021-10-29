@@ -11,11 +11,11 @@ export const Home = () => {
       {isLoading && <p>Cargando...</p>}
       {isSuccess && data ? (
         <div>
-          <h1> {data.length} posts publicados </h1>
+          <h1> {data.length} characters publicados </h1>
           {data.map((p) => (
             <div key={p.id}>
               <h1> {p.name} </h1>
-              <p> {p.description} </p>
+              <p> {p.species} </p>
               <Link to={`/post/${p.id}`}> Ver mas... </Link>
             </div>
           ))}

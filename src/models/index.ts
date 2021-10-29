@@ -1,7 +1,6 @@
-export interface Post {
+export interface Character {
   id: number
-  createdAt: string
-  updatedAt: string
   name: string
-  description: string
+  status: string
+  species: string
 }

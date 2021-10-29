@@ -11,7 +11,7 @@ export const Post = () => {
       {post.isSuccess && (
         <>
           <h1>Dentro del post: {post.data.name} </h1>
-          <p> {post.data.description} </p>
+          <p> {post.data.species} </p>
         </>
       )}
     </div>

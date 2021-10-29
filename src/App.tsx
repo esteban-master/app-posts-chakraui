@@ -6,6 +6,7 @@ const queryClient = new QueryClient()
 function App() {
   return (
     <div className="bg-white">
+      <p>hola</p>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools />
         <Router />
