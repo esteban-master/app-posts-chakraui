@@ -1,12 +1,12 @@
-import { screen } from '@testing-library/dom'
+import { screen, waitFor } from '@testing-library/dom'
 import React from 'react'
 import { mockData } from '../../mocks/handlers'
-import { renderWithQueryClient } from '../../test/utils'
+import { renderWithQueryClientAndRouter } from '../../test/utils'
 import { Home } from './index'
 
 describe('Test Home', () => {
   test('Deberia encontrar el titulo', async () => {
-    renderWithQueryClient(<Home />)
+    renderWithQueryClientAndRouter(<Home />, { options: {} })
     expect(screen.getByText('Cargando...'))
     expect(
       await screen.findByRole('heading', {
@@ -14,5 +14,4 @@ describe('Test Home', () => {
       })
     ).toBeInTheDocument()
   })
-  test('should render post', async () => {})
 })

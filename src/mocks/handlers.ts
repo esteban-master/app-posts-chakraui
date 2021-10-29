@@ -26,6 +26,11 @@ const handlers = [
   rest.get('http://localhost:4000/posts', (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(mockData))
   }),
+  rest.get('http://localhost:4000/posts/:id', (req, res, ctx) => {
+    const { id } = req.params
+    const post = mockData.find((p) => p.id.toString() === id.toString())
+    return res(ctx.status(200), ctx.json(post))
+  }),
   rest.post('http://localhost:4000/login', (req, res, ctx) => {
     return res(
       ctx.status(200),

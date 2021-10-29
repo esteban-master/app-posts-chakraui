@@ -14,3 +14,8 @@ export const usePosts = () =>
     const { data } = await api.get<Post[]>('/posts')
     return data
   })
+export const usePost = (id: string) =>
+  useQuery<Post, ErrorResponse>(['posts', id], async () => {
+    const { data } = await api.get<Post>(`/posts/${id}`)
+    return data
+  })

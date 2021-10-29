@@ -1,6 +1,7 @@
-import React, { PropsWithChildren } from 'react'
+import React from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { render, RenderOptions } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 
 export const testingQueryClient = new QueryClient({
   defaultOptions: {
@@ -11,15 +12,21 @@ export const testingQueryClient = new QueryClient({
   }
 })
 
-const Wrapper = ({ children }: PropsWithChildren<React.ReactNode>) => (
-  <QueryClientProvider client={testingQueryClient}>
-    {children}
-  </QueryClientProvider>
-)
-
-export function renderWithQueryClient(
+export function renderWithQueryClientAndRouter(
   ui: React.ReactElement,
-  options?: RenderOptions
+  {
+    options,
+    initialRoutes = ['/']
+  }: { options: RenderOptions; initialRoutes?: string[] }
 ) {
-  return render(ui, { wrapper: Wrapper, ...options })
+  return render(ui, {
+    wrapper: ({ children }) => (
+      <MemoryRouter initialEntries={initialRoutes}>
+        <QueryClientProvider client={testingQueryClient}>
+          {children}
+        </QueryClientProvider>
+      </MemoryRouter>
+    ),
+    ...options
+  })
 }
